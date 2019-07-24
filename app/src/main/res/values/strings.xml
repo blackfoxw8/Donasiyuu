@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Donasiyuu</string>
+
+    <string name="next">LANJUT</string>
+    <string name="skip">LEWATI</string>
+    <string name="start">MULAI</string>
+
+    <string name="slide_1_title">Selamat Datang</string>
+    <string name="slide_1_desc">Hallo Selamat Datang di Aplikasi Donasiyuu</string>
+
+    <string name="slide_2_title">Donasi</string>
+    <string name="slide_2_desc">Disini Kamu Bisa Melihat Masyarakat yang Sedang Membutuhkan Donasi mu</string>
+
+    <string name="slide_3_title">Bantu Kami</string>
+    <string name="slide_3_desc">Kamu Bisa Membantu Kami Dengan Menambahkan Orang - Orang DiSekitar Mu yang Dirasa Membutuhkan Donasi</string>
+
+    <string name="slide_4_title">Kasih Tau Orang Lain</string>
+    <string name="slide_4_desc">Kasih Tau Teman dan Saudara mu Tentang Aplikasi Ini Yahhhh </string>
+    <string name="title_activity_menu_utama">MenuUtama</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Bantu Kami</string>
+    <string name="title_notifications">About</string>
+
+
+</resources>

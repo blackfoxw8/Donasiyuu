@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "916770317339",
+    "firebase_url": "https://donasiyuu.firebaseio.com",
+    "project_id": "donasiyuu",
+    "storage_bucket": "donasiyuu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916770317339:android:18382675dd72cc70",
+        "android_client_info": {
+          "package_name": "com.donasiyuu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916770317339-0hvrmjrkp9ujtp4b2rjkpubcjf9u0qj5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.donasiyuu",
+            "certificate_hash": "22deb3824a89a7d489ee150187fceba326301ecd"
+          }
+        },
+        {
+          "client_id": "916770317339-5gst6jbsna59q3q5qrqm9h0g4pus0s66.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1_FpulF0FFdv9wqbr_zoc9uDj4a12f9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916770317339-5gst6jbsna59q3q5qrqm9h0g4pus0s66.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
