@@ -8,23 +8,17 @@ public class Upload  {
 
 
 
-    public Upload(String medittextnamalengkap, String meditusia, String meditalamatlengkap, String gambarurl)
+    public Upload()
     {
         //Construktor Kosong
+
+    }
+    public Upload(String medittextnamalengkap, String meditusia, String meditalamatlengkap, String gambarurl)
+    {
         this.mName = medittextnamalengkap;
         this.mUsia = meditusia;
         this.mAlamat = meditalamatlengkap;
         this.mGambarUrl = gambarurl;
-
-        if (medittextnamalengkap.trim().equals(""))
-        {
-            medittextnamalengkap = "Tidak Ada";
-        }
-    }
-    public Upload()
-    {
-
-
 
 
     }

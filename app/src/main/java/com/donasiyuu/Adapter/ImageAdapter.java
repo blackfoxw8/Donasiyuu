@@ -26,14 +26,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @Override
     public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.image_item, parent, false);
-        return new ImageViewHolder(v);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.image_item, parent, false);
+        return new ImageViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         Upload uploadCurrent = mUploads.get(position);
-        holder.textViewName.setText(uploadCurrent.getmName());
         Picasso.get()
                 .load(uploadCurrent.getmGambarUrl())
                 .fit()
@@ -47,13 +46,16 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     }
 
     public class ImageViewHolder extends RecyclerView.ViewHolder {
-        public TextView textViewName;
         public ImageView imageView;
+        public TextView textViewName;
+        public TextView textViewUsia;
+        public TextView textViewAlamat;
 
         public ImageViewHolder(View itemView) {
             super(itemView);
-
             textViewName = itemView.findViewById(R.id.text_view_name);
+            textViewUsia = itemView.findViewById(R.id.text_view_name1);
+            textViewAlamat = itemView.findViewById(R.id.text_view_name2);
             imageView = itemView.findViewById(R.id.image_view_upload);
         }
     }

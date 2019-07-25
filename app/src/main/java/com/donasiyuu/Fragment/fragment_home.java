@@ -40,45 +40,39 @@ public class fragment_home  extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_home, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
-        final RecyclerView recyclerView2 = (RecyclerView) v.findViewById(R.id.recycler_view);
-
-
-
+        View view = inflater.inflate(R.layout.activity_images, container, false);
         mUploads = new ArrayList<>();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+
+
+        RecyclerView recyclerView2 = (RecyclerView) view.findViewById(R.id.recycler_view);
+        recyclerView2.setHasFixedSize(true);
+        recyclerView2.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        mAdapter = new ImageAdapter(this.getActivity(), mUploads);
+        recyclerView2.setAdapter(mAdapter);
+
+
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("users_profile_pic");
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Upload upload = postSnapshot.getValue(Upload.class);
                     mUploads.add(upload);
-
-                    mAdapter = new ImageAdapter(getActivity(), mUploads);
                 }
-                if (recyclerView2!=null){
-                    recyclerView2.setHasFixedSize(true);
-                    recyclerView2.setAdapter(mAdapter);
-                    recyclerView2.setLayoutManager(new GridLayoutManager(getActivity(),2));
-                }
+                // SET ADAPTER HARUSNYA DISINI TAPI KENAPA GAK BISA TOLONG INI MAH
 
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getContext(), databaseError.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
 
-
-
-
-
-
-        return v;
-
+        return view;
     }
+
 }

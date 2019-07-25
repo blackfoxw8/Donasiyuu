@@ -63,13 +63,13 @@ public class fragment_bantukami extends Fragment {
         Button muploadgambar = v.findViewById(R.id.uploadgambar);
         mphotodiri = (ImageView) v.findViewById(R.id.mphotodiri);
         TextView mlihathasilgambar = v.findViewById(R.id.textView9);
-        EditText medittextnamalengkap = v.findViewById(R.id.editText);
-        EditText meditusia = v.findViewById(R.id.editText2);
-        EditText meditalamatlengkap = v.findViewById(R.id.editText4);
+        medittextnamalengkap = (EditText) v.findViewById(R.id.editText);
+        meditusia = (EditText) v.findViewById(R.id.editText2);
+        meditalamatlengkap = (EditText) v.findViewById(R.id.editText4);
         mProgressBar = (ProgressBar) v.findViewById(R.id.progressBar);
 
-        mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
+        mStorageRef = FirebaseStorage.getInstance().getReference("users_profile_pic");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("users_profile_pic");
 
 
         mpilihgambar.setOnClickListener(new View.OnClickListener() {
@@ -153,7 +153,10 @@ public class fragment_bantukami extends Fragment {
                             }, 500);
 
                             Toast.makeText(getContext(),"Upload Berhasil", Toast.LENGTH_LONG).show();
-                            Upload upload = new Upload();
+                            Upload upload = new Upload(medittextnamalengkap.getText().toString(),
+                                    meditusia.getText().toString(),
+                                    meditalamatlengkap.getText().toString(),
+                                    taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
                             String uploadId = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadId).setValue(upload);
 
