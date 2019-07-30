@@ -42,7 +42,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         holder.textViewUsia.setText(uploadCurrent.getmUsia());
         holder.textViewAlamat.setText(uploadCurrent.getmAlamat());
         Picasso.get()
-                .load(uploadCurrent.getmGambarUrl())
+                .load(uploadCurrent.getGambarUrl())
                 .placeholder(R.mipmap.ic_launcher)
                 .fit()
                 .into(holder.imageView);

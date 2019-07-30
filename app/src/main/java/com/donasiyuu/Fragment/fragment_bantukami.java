@@ -26,6 +26,7 @@ import com.donasiyuu.R;
 import com.donasiyuu.Upload;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -137,6 +138,11 @@ public class fragment_bantukami extends Fragment {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            Task<Uri>urlTask = taskSnapshot.getStorage().getDownloadUrl();
+                            while (!urlTask.isSuccessful());
+                            Uri downloadurl = urlTask.getResult();
+
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
@@ -149,7 +155,7 @@ public class fragment_bantukami extends Fragment {
                             Upload upload = new Upload(medittextnamalengkap.getText().toString(),
                                     meditusia.getText().toString(),
                                     meditalamatlengkap.getText().toString(),
-                                    taskSnapshot.getStorage().getDownloadUrl().toString());
+                                    downloadurl.toString());
                             String uploadId = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadId).setValue(upload);
 

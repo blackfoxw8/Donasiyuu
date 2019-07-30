@@ -2,7 +2,7 @@ package com.donasiyuu;
 
 public class Upload  {
     private String mName;
-    private String mGambarUrl;
+    private String GambarUrl;
     private String mUsia;
     private String mAlamat;
 
@@ -13,7 +13,7 @@ public class Upload  {
         //Construktor Kosong
 
     }
-    public Upload(String medittextnamalengkap, String meditusia, String meditalamatlengkap, String GambarUrl)
+    public Upload(String medittextnamalengkap, String meditusia, String meditalamatlengkap, String gambarUrl)
     {
         if (medittextnamalengkap.trim().equals(""))
         {
@@ -27,10 +27,10 @@ public class Upload  {
         {
             meditalamatlengkap = "Alamat Tidak ADA";
         }
-        mName = medittextnamalengkap;
-        mUsia = meditusia;
-        mAlamat = meditalamatlengkap;
-        this.mGambarUrl = GambarUrl;
+        this.mName = medittextnamalengkap;
+        this.mUsia = meditusia;
+        this.mAlamat = meditalamatlengkap;
+        this.GambarUrl = gambarUrl;
 
     }
     public String getmName()
@@ -57,13 +57,13 @@ public class Upload  {
     {
         mAlamat = meditalamatlengkap;
     }
-    public String getmGambarUrl()
+    public String getGambarUrl()
     {
-        return mGambarUrl;
+        return GambarUrl;
     }
-    public void setmGambarUrl(String GambarUrl)
+    public void setGambarUrl(String gambarUrl)
     {
-        mGambarUrl = GambarUrl;
+        GambarUrl = gambarUrl;
     }
 
 }
