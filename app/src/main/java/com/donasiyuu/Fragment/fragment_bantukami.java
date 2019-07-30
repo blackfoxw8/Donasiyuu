@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.donasiyuu.Adapter.ImageAdapter;
 import com.donasiyuu.R;
 import com.donasiyuu.Upload;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -47,7 +48,7 @@ public class fragment_bantukami extends Fragment {
     private ImageView mphotodiri;
     private ProgressBar mProgressBar;
 
-    private Uri mgambaruri;
+    private Uri mGambarUri;
 
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
@@ -62,14 +63,14 @@ public class fragment_bantukami extends Fragment {
         Button mpilihgambar = v.findViewById(R.id.pilihgambar);
         Button muploadgambar = v.findViewById(R.id.uploadgambar);
         mphotodiri = (ImageView) v.findViewById(R.id.mphotodiri);
-        TextView mlihathasilgambar = v.findViewById(R.id.textView9);
+
         medittextnamalengkap = (EditText) v.findViewById(R.id.editText);
         meditusia = (EditText) v.findViewById(R.id.editText2);
         meditalamatlengkap = (EditText) v.findViewById(R.id.editText4);
         mProgressBar = (ProgressBar) v.findViewById(R.id.progressBar);
 
-        mStorageRef = FirebaseStorage.getInstance().getReference("users_profile_pic");
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("users_profile_pic");
+        mStorageRef = FirebaseStorage.getInstance().getReference("Photo");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Photo");
 
 
         mpilihgambar.setOnClickListener(new View.OnClickListener() {
@@ -95,13 +96,6 @@ public class fragment_bantukami extends Fragment {
             }
         });
 
-        mlihathasilgambar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
 
         return v;
     }
@@ -121,8 +115,8 @@ public class fragment_bantukami extends Fragment {
 
         if (requestCode == pilih_gambar && resultCode == Activity.RESULT_OK
                 && data != null && data.getData() != null) {
-            mgambaruri = data.getData();
-            Picasso.get().load(mgambaruri).fit().into(mphotodiri);
+            mGambarUri = data.getData();
+            Picasso.get().load(mGambarUri).fit().into(mphotodiri);
         }
     }
 
@@ -135,15 +129,14 @@ public class fragment_bantukami extends Fragment {
 
     private void uploadFile()
     {
-        if (mgambaruri != null)
-        {
-            StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
-            +"."+ getFileExtension(mgambaruri));
+        if (mGambarUri != null) {
+            final StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
+                    + "." + getFileExtension(mGambarUri));
 
-            mUploadTask = fileReference.putFile(mgambaruri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
+            mUploadTask = fileReference.putFile(mGambarUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
@@ -152,14 +145,13 @@ public class fragment_bantukami extends Fragment {
                                 }
                             }, 500);
 
-                            Toast.makeText(getContext(),"Upload Berhasil", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_LONG).show();
                             Upload upload = new Upload(medittextnamalengkap.getText().toString(),
                                     meditusia.getText().toString(),
                                     meditalamatlengkap.getText().toString(),
-                                    taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+                                    taskSnapshot.getStorage().getDownloadUrl().toString());
                             String uploadId = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadId).setValue(upload);
-
 
                         }
                     })
@@ -167,22 +159,17 @@ public class fragment_bantukami extends Fragment {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-
                             double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
                             mProgressBar.setProgress((int) progress);
-
                         }
                     });
-        }
-        else
-        {
-            Toast.makeText(getContext(), "Gambar Kosong",Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getContext(), "Tidak Ada File", Toast.LENGTH_SHORT).show();
         }
     }
 }

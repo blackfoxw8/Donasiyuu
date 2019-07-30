@@ -13,13 +13,24 @@ public class Upload  {
         //Construktor Kosong
 
     }
-    public Upload(String medittextnamalengkap, String meditusia, String meditalamatlengkap, String gambarurl)
+    public Upload(String medittextnamalengkap, String meditusia, String meditalamatlengkap, String GambarUrl)
     {
-        this.mName = medittextnamalengkap;
-        this.mUsia = meditusia;
-        this.mAlamat = meditalamatlengkap;
-        this.mGambarUrl = gambarurl;
-
+        if (medittextnamalengkap.trim().equals(""))
+        {
+            medittextnamalengkap = "Nama Tidak ADA";
+        }
+        else if (meditusia.trim().equals(""))
+        {
+            meditusia = "Usia Tidak ADA";
+        }
+        else if (meditalamatlengkap.trim().equals(""))
+        {
+            meditalamatlengkap = "Alamat Tidak ADA";
+        }
+        mName = medittextnamalengkap;
+        mUsia = meditusia;
+        mAlamat = meditalamatlengkap;
+        this.mGambarUrl = GambarUrl;
 
     }
     public String getmName()
@@ -50,9 +61,9 @@ public class Upload  {
     {
         return mGambarUrl;
     }
-    public void setmGambarUrl(String gambarUrl)
+    public void setmGambarUrl(String GambarUrl)
     {
-        mGambarUrl = gambarUrl;
+        mGambarUrl = GambarUrl;
     }
 
 }
