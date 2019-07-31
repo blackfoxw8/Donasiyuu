@@ -11,7 +11,9 @@
         android:roundIcon="@drawable/charity"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ImagesActivity"></activity>
+        <activity android:name=".FormActivity"></activity>
+        <activity android:name=".PostDetailActivity" />
+        <activity android:name=".ImagesActivity" />
         <activity
             android:name=".MenuUtama"
             android:label="@string/title_activity_menu_utama" />
