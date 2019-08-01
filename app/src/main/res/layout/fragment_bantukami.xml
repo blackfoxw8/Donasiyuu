@@ -134,7 +134,7 @@
         android:id="@+id/uploadgambar"
         android:layout_width="252dp"
         android:layout_height="27dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="4dp"
         android:background="@drawable/rounded_button"
         android:text="KIRIM"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -144,8 +144,8 @@
 
     <Button
         android:id="@+id/pilihgambar"
-        android:layout_width="104dp"
-        android:layout_height="47dp"
+        android:layout_width="155dp"
+        android:layout_height="27dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/rounded_button"
@@ -156,8 +156,8 @@
 
     <ImageView
         android:id="@+id/mphotodiri"
-        android:layout_width="372dp"
-        android:layout_height="177dp"
+        android:layout_width="371dp"
+        android:layout_height="246dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
 
@@ -176,10 +176,8 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="377dp"
         android:layout_height="19dp"
-        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/uploadgambar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

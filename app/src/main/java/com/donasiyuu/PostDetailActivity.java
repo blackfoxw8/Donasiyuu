@@ -34,7 +34,7 @@ public class PostDetailActivity extends AppCompatActivity {
 
         // Pengisian Data
         String postimg = getIntent().getExtras().getString("imageView");
-        Picasso.get().load(postimg).into(img);
+        Picasso.get().load(postimg).fit().centerCrop().into(img);
 
         String postnama = getIntent().getExtras().getString("textViewName");
         txt_post_detail_nama.setText(postnama);
